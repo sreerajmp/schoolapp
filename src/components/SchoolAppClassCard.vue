@@ -35,7 +35,7 @@
       </p>
     </div>
     </div>
-    <button v-if="more===true" v-on:click="moreDetails" style="color:blue">Hide</button>
+    <button v-if="more===true" v-on:click="moreDetails" style="color:blue; font-size:13px">Hide...</button>
     </div>
   </section>
 </template>

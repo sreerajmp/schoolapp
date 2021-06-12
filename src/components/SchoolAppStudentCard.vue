@@ -4,7 +4,7 @@
       <p class="font-bold ">
         Name:{{ student.name }}
       </p>
-      <button v-if="more===false" v-on:click="moreDetails">Show more</button>
+      <button v-if="more===false" v-on:click="moreDetails" style="color:green; font-size:13px">Show more</button>
       <div v-if="more===true">
       <p class="mt-2 text-gray-700 line-clamp-4">
         Age:{{ student.age }}
@@ -14,7 +14,7 @@
     </div>
     </div>
     </div>
-    <button v-if="more===true" v-on:click="moreDetails">Hide</button>
+    <button v-if="more===true" v-on:click="moreDetails" style="color:blue; font-size:13px">Hide...</button>
   </section>
 </template>
 
