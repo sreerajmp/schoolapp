@@ -1,6 +1,6 @@
 <template>
   <header>
-    <p>My School Application</p>
+    <router-link to="/"><p>My School Application</p></router-link>
     <nav>
       <ul>
         <li><router-link to="/">Home</router-link></li>
