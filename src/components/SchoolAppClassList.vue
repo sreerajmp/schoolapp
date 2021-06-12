@@ -28,13 +28,13 @@ export default {
       console.log('fetchList')
       const response = await axios.get('https://hamon-interviewapi.herokuapp.com/classrooms/?api_key=Aaf59')
       this.classrooms = response.data.classrooms
-      this.loading = false
       console.log('resClass:', this.classrooms)
     },
     async getSudentList () {
       await axios.get('https://hamon-interviewapi.herokuapp.com/students/?api_key=Aaf59').then(response => {
         this.students_list = response.data.students
         localStorage.setItem('students_list', JSON.stringify(response.data.students))
+        this.loading = false
       })
     }
   },
