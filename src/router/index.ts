@@ -1,11 +1,25 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
-import Home from '../views/Home.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
     name: 'Home',
-    component: Home
+    component: () => import(/* webpackChunkName: "about" */ '../views/SchoolAppHome.vue')
+  },
+  {
+    path: '/classList',
+    name: 'SchoolAppClassList',
+    component: () => import(/* webpackChunkName: "about" */ '../components/SchoolAppClassList.vue')
+  },
+  {
+    path: '/studentList',
+    name: 'SchoolAppStudentList',
+    component: () => import(/* webpackChunkName: "about" */ '../components/SchoolAppStudentList.vue')
+  },
+  {
+    path: '/subjectList',
+    name: 'SchoolAppSubjectList',
+    component: () => import(/* webpackChunkName: "about" */ '../components/SchoolAppSubjectList.vue')
   },
   {
     path: '/about',
