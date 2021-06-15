@@ -26,14 +26,14 @@
       </select>
       </p>
     </div>
-    <div v-if="classSub">
+    <!-- <div v-if="classSub">
       <p class="mt-2 text-gray-700 line-clamp-4">
         <label>Assign Student:</label>
       <select v-model="stud" @change="assignStudent(stud)">
         <option v-for="(student,index) in students_list_new" :key="index" v-bind:value="student"> {{student.name}} </option>
       </select>
       </p>
-    </div>
+    </div> -->
     </div>
     <button v-if="more===true" v-on:click="moreDetails" style="color:blue; font-size:13px">Hide...</button>
     </div>

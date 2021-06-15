@@ -17,6 +17,7 @@ export default {
   data () {
     return {
       students: [],
+      class_rooms: [],
       res: null,
       loading: true,
       error: null
@@ -26,13 +27,30 @@ export default {
     async fetchList () {
       console.log('fetchList')
       const response = await axios.get('https://hamon-interviewapi.herokuapp.com/students/?api_key=Aaf59')
-      this.students = response.data.students
+      localStorage.setItem('student_list', JSON.stringify(response.data.students))
+      this.students = JSON.parse(localStorage.getItem('student_list'))
       this.loading = false
       console.log('res:', response.data.students)
+    },
+    async fetchClassList () {
+      console.log('log:', this.class_rooms)
+      await axios.get('https://hamon-interviewapi.herokuapp.com/classrooms/?api_key=Aaf59').then(resp => {
+        resp.data.classrooms.forEach(element => {
+          axios.get('https://hamon-interviewapi.herokuapp.com/classrooms/' + element.id + '?api_key=Aaf59').then(res => {
+            console.log('ressss:', res.data)
+            if (res.data.subject) {
+              this.class_rooms.push(res.data)
+              localStorage.setItem('classroomsSubject', JSON.stringify(this.class_rooms))
+            }
+          })
+        })
+        console.log('res.dat:', this.class_rooms)
+      })
     }
   },
   mounted () {
     this.fetchList()
+    this.fetchClassList()
   }
 }
 </script>

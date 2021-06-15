@@ -9,8 +9,19 @@
       <p class="mt-2 text-gray-700 line-clamp-4">
         Age:{{ student.age }}
       </p>
+      <div v-if="Studclass">
+      Clasroom:{{ Studclass }}<button v-on:click="removeClass" style="color:red;font-size:10px">&emsp;&emsp;&emsp;<span >remove</span></button>
+      </div>
     <div>
-      <p class="mt-4 text-gray-600">{{ student.email}}</p>
+      <p class="mt-4 text-gray-600">Email:{{ student.email}}</p>
+    </div>
+    <div>
+      <p class="mt-2 text-gray-700 line-clamp-4">
+        <label>Assign Class:</label>
+        <select v-model="classSelected" @change="assignClass(classSelected)">
+          <option v-for="(classess,index) in classRoomWithSubject" :key="index" v-bind:value="classess"> {{classess.name}}</option>
+      </select>
+      </p>
     </div>
     </div>
     </div>
@@ -19,11 +30,14 @@
 </template>
 
 <script>
-import axios from 'axios'
 export default {
   data () {
     return {
-      more: false
+      classSelected: {},
+      more: false,
+      Studclass: null,
+      classRoomWithSubject: [],
+      student_list: []
     }
   },
   props: {
@@ -33,9 +47,24 @@ export default {
     }
   },
   methods: {
+    async removeClass () {
+      localStorage.removeItem(this.student.id)
+      this.Studclass = null
+    },
     async moreDetails () {
       this.more = !this.more
+    },
+    async assignClass (Seleted) {
+      this.Studclass = Seleted.name
+      localStorage.setItem(this.student.id, Seleted.name)
     }
+  },
+  mounted () {
+    this.student_list = JSON.parse(sessionStorage.getItem('student_list'))
+    this.classRoomWithSubject = JSON.parse(localStorage.getItem('classroomsSubject'))
+    console.log('clas:', this.classRoomWithSubject)
+    this.Studclass = localStorage.getItem(this.student.id)
+    console.log('Studclass:', this.Studclass)
   }
 }
 </script>

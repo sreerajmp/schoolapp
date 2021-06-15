@@ -14,25 +14,6 @@ export default {
   components: {
     SchoolAppHeader,
     SchoolAppFooter
-  },
-  data () {
-    return {
-      students: [],
-      res: null,
-      loading: false,
-      error: null
-    }
-  },
-  methods: {
-    async fetchList () {
-      console.log('fetchList')
-      const response = await axios.get('https://hamon-interviewapi.herokuapp.com/students/?api_key=Aaf59')
-      this.students = response.data.students
-      console.log('res:', response.data.students)
-    }
-  },
-  mounted () {
-    this.fetchList()
   }
 }
 </script>
