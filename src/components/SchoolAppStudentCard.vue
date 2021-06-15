@@ -44,6 +44,10 @@ export default {
     student: {
       type: Object,
       required: true
+    },
+    class_rooms: {
+      type: Array,
+      required: true
     }
   },
   methods: {
@@ -60,11 +64,9 @@ export default {
     }
   },
   mounted () {
+    this.classRoomWithSubject = this.class_rooms
     this.student_list = JSON.parse(sessionStorage.getItem('student_list'))
-    this.classRoomWithSubject = JSON.parse(localStorage.getItem('classroomsSubject'))
-    console.log('clas:', this.classRoomWithSubject)
     this.Studclass = localStorage.getItem(this.student.id)
-    console.log('Studclass:', this.Studclass)
   }
 }
 </script>

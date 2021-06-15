@@ -71,7 +71,6 @@ export default {
     async moreDetails () {
       this.more = !this.more
       await axios.get('https://hamon-interviewapi.herokuapp.com/classrooms/' + this.classroom.id + '?api_key=Aaf59').then(response => {
-        console.log('Classss:', response.data)
         this.subjects.forEach(element => {
           if (element.id === response.data.subject) {
             this.classSub = element.name
@@ -81,14 +80,12 @@ export default {
     },
     async assignSubject (Seletedsub) {
       await axios.patch('https://hamon-interviewapi.herokuapp.com/classrooms/' + this.classroom.id + '?api_key=Aaf59', 'subject=' + Seletedsub.id).then(response => {
-        console.log('res:', response)
         if (response.status === 200 && response.data.subject === Seletedsub.id) {
           this.classSub = Seletedsub.name
         }
       })
     },
     async assignStudent (Seletedstud) {
-      console.log('this.students_list::', Seletedstud)
       this.classStud = Seletedstud.name
     }
   }

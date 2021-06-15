@@ -25,10 +25,8 @@ export default {
   },
   methods: {
     async fetchList () {
-      console.log('fetchList')
       const response = await axios.get('https://hamon-interviewapi.herokuapp.com/classrooms/?api_key=Aaf59')
       this.classrooms = response.data.classrooms
-      console.log('resClass:', this.classrooms)
       this.loading = false
     }
     // async getSudentList () {

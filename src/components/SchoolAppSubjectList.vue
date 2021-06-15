@@ -24,11 +24,9 @@ export default {
   },
   methods: {
     async fetchList () {
-      console.log('fetchList')
       const response = await axios.get('https://hamon-interviewapi.herokuapp.com/subjects/?api_key=Aaf59')
       this.loading = false
       this.subjects = response.data.subjects
-      console.log('res:', response.data.subjects)
     }
   },
   mounted () {
