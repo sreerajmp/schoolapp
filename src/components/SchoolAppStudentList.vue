@@ -29,7 +29,6 @@ export default {
       const response = await axios.get('https://hamon-interviewapi.herokuapp.com/students/?api_key=Aaf59')
       localStorage.setItem('student_list', JSON.stringify(response.data.students))
       this.students = JSON.parse(localStorage.getItem('student_list'))
-      this.loading = false
       console.log('res:', response.data.students)
     },
     async fetchClassList () {
@@ -44,6 +43,7 @@ export default {
             }
           })
         })
+        this.loading = false
         console.log('res.dat:', this.class_rooms)
       })
     }
